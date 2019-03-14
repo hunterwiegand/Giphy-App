@@ -16,7 +16,7 @@ var gif = {
 
             var btn = $("<button>");
 
-            btn.addClass("actor m-2");
+            btn.addClass("pokemon m-2");
             btn.attr("data-name", gif.gifArr[i]);
             btn.text((gif.gifArr[i]).replace("+", " "));
 
@@ -35,7 +35,6 @@ var gif = {
             var newGif = $("#gif-input").val().replace(" ", "+");
             gif.gifArr.push(newGif);
 
-            $("#gif-input").empty();
             gif.displayButtons();
         })
     },
@@ -57,7 +56,7 @@ var gif = {
                 //Original gif
                 var imgSrcAnimate = data[i].images.fixed_height.url;
                 //Gif rating
-                var imgRating = data[i].rating;
+                var imgRating = "Rating: " + data[i].rating;
                 var image = $("<img>");
                 var p = $("<p>");
 
@@ -81,11 +80,14 @@ var gif = {
 
     applyButtonClick: function () {
 
-        $(document).on("click", ".actor", function () {
+        $(document).on("click", ".pokemon", function () {
+
             gif.targetGif = $(this).attr("data-name")
 
 
             $("#img-div").empty();
+
+            $("#img-div").html("<p>Click the image to make it move!</p>");
 
             gif.callGify();
         })
@@ -111,4 +113,3 @@ gif.displayButtons();
 gif.getUserInput();
 gif.applyButtonClick();
 gif.animateClick();
-
